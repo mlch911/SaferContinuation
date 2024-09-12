@@ -51,20 +51,22 @@ final public class SaferContinuation<C: Continuation & Sendable>: @unchecked Sen
 	  - context: Allows you to provide any arbitrary data to differentiate between different continuations that you can inspect when errors are thrown or
 	 notifications posted.. Could be a string, a UUID, a UIImage, or your mom's nickname. The last one is probably not useful though. You be the judge.
 	 */
-	public init(_ continuation: C,
-                isFatal: SaferContinuation<UnsafeContinuation<Void, Error>>.FatalityOptions? = nil,
-                timeout: TimeInterval? = nil,
-                delayCheckInterval: TimeInterval? = 3,
-                file: StaticString = #file,
-                line: Int = #line, 
-                function: StaticString = #function,
-                context: Any? = nil) {
+	public init(
+		_ continuation: C,
+		isFatal: SaferContinuation<UnsafeContinuation<Void, Error>>.FatalityOptions? = nil,
+		timeout: TimeInterval? = nil,
+		delayCheckInterval: TimeInterval? = 3,
+		file: StaticString = #file,
+		line: Int = #line,
+		function: StaticString = #function,
+		context: Any? = nil
+	) {
 #if DEBUG
-        let defaultFatalOptions: SaferContinuation<UnsafeContinuation<Void, Error>>.FatalityOptions = true
+		let defaultFatalOptions: SaferContinuation<UnsafeContinuation<Void, Error>>.FatalityOptions = true
 #else
-        let defaultFatalOptions: SaferContinuation<UnsafeContinuation<Void, Error>>.FatalityOptions = false
+		let defaultFatalOptions: SaferContinuation<UnsafeContinuation<Void, Error>>.FatalityOptions = false
 #endif
-        
+
 		self.continuation = continuation
 		self.isFatal = isFatal ?? defaultFatalOptions
 		self.file = file
@@ -248,14 +250,14 @@ extension SaferContinuation where C == UnsafeContinuation<Void, Error> {
 	static public func initializeLogging() {
 		setupLogging()
 	}
-    
-    public func resume() {
-        resume(returning: ())
-    }
+
+	public func resume() {
+		resume(returning: ())
+	}
 }
 
 extension SaferContinuation where C == CheckedContinuation<Void, Error> {
-    public func resume() {
-        resume(returning: ())
-    }
+	public func resume() {
+		resume(returning: ())
+	}
 }
