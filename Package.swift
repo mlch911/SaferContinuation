@@ -20,7 +20,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-		.package(url: "https://github.com/mredig/Swiftwood.git", .upToNextMinor(from: "0.4.0")),
+		.package(url: "https://git.maxjia.com/heybox_ios/swiftwood.git", revision: "37c0eb7198635988c82328a1bea66479da7ef19a"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
